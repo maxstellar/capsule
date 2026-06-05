@@ -16,6 +16,5 @@ export const load: PageServerLoad = async ({ locals, cookies }) => {
 	});
 
 	const authorizeUrl = getAuthorizeUrl(state);
-	console.log('[login] authorize URL:', authorizeUrl);
 	return { authorizeUrl };
 };
