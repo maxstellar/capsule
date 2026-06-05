@@ -29,7 +29,7 @@
 		</p>
 		<a
 			href="/"
-			class="inline-flex items-center rounded-md px-4 py-2.5 text-sm font-medium text-white transition-colors sm:text-base"
+			class="inline-flex cursor-pointer items-center rounded-md px-4 py-2.5 text-sm font-medium text-white transition-all hover:brightness-110 active:brightness-100 sm:text-base"
 			style="background-color:var(--color-accent)"
 		>
 			Go home

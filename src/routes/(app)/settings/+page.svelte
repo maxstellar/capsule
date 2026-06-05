@@ -120,7 +120,7 @@
 				<select
 					name="hour"
 					bind:value={selectValue}
-					class="rounded-md border border-zinc-300 bg-white py-1.5 pr-9 pl-2.5 text-sm text-zinc-900 focus:ring-2 focus:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+					class="cursor-pointer rounded-md border border-zinc-300 bg-white py-1.5 pr-9 pl-2.5 text-sm text-zinc-900 focus:ring-2 focus:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
 				>
 					<option value="">No reminder</option>
 					{#each Array(24) as _, h}
@@ -137,7 +137,7 @@
 				</select>
 				<button
 					type="submit"
-					class="rounded-md border border-zinc-300 px-3 py-1.5 text-sm transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800"
+					class="cursor-pointer rounded-md border border-zinc-300 px-3 py-1.5 text-sm transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800"
 				>
 					Save
 				</button>
@@ -205,7 +205,7 @@
 			<form method="POST" action="/logout">
 				<button
 					type="submit"
-					class="text-sm text-zinc-500 underline underline-offset-2 hover:text-zinc-700 dark:hover:text-zinc-300"
+					class="cursor-pointer text-sm text-zinc-500 underline underline-offset-2 hover:text-zinc-700 dark:hover:text-zinc-300"
 				>
 					Sign out
 				</button>

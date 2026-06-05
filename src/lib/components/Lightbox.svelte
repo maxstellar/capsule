@@ -36,7 +36,7 @@
 	<button
 		onclick={onclose}
 		aria-label="Close"
-		class="absolute top-4 right-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+		class="absolute top-4 right-4 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
 	>
 		<X size={18} />
 	</button>
@@ -53,14 +53,14 @@
 		<button
 			onclick={(e) => { e.stopPropagation(); prev(); }}
 			aria-label="Previous photo"
-			class="absolute left-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
+			class="absolute left-3 top-1/2 -translate-y-1/2 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
 		>
 			<ChevronLeft size={20} />
 		</button>
 		<button
 			onclick={(e) => { e.stopPropagation(); next(); }}
 			aria-label="Next photo"
-			class="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
+			class="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
 		>
 			<ChevronRight size={20} />
 		</button>

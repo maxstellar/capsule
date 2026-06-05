@@ -207,7 +207,7 @@
 				href="/upload"
 				aria-label="Upload photo"
 				data-onboard="upload"
-				class="flex h-14 w-16 flex-none items-center justify-center rounded-2xl shadow-md transition-transform active:scale-95"
+				class="flex h-14 w-16 flex-none items-center justify-center rounded-2xl shadow-md transition-all active:scale-95 [@media(hover:hover)]:hover:brightness-110"
 				style="background-color:var(--color-accent)"
 			>
 				<Plus size={30} color="white" strokeWidth={2.5} />

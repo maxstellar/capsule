@@ -54,13 +54,13 @@
 				onclick={() => navDay(-1)}
 				disabled={isYesterday}
 				aria-label="Previous day"
-				class="flex h-7 w-7 items-center justify-center rounded-md bg-zinc-200 text-zinc-700 transition-colors disabled:opacity-30 [@media(hover:hover)]:hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:[@media(hover:hover)]:hover:bg-zinc-700"
+				class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-zinc-200 text-zinc-700 transition-colors disabled:opacity-30 [@media(hover:hover)]:hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:[@media(hover:hover)]:hover:bg-zinc-700"
 			><ChevronLeft size={14} /></button>
 			<button
 				onclick={() => navDay(1)}
 				disabled={isToday}
 				aria-label="Next day"
-				class="flex h-7 w-7 items-center justify-center rounded-md bg-zinc-200 text-zinc-700 transition-colors disabled:opacity-30 [@media(hover:hover)]:hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:[@media(hover:hover)]:hover:bg-zinc-700"
+				class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-zinc-200 text-zinc-700 transition-colors disabled:opacity-30 [@media(hover:hover)]:hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:[@media(hover:hover)]:hover:bg-zinc-700"
 			><ChevronRight size={14} /></button>
 		</div>
 	</div>
@@ -79,7 +79,7 @@
 			/>
 			<button
 				type="submit"
-				class="rounded-md px-3 py-1.5 text-sm font-medium text-white transition-colors"
+				class="cursor-pointer rounded-md px-3 py-1.5 text-sm font-medium text-white transition-all hover:brightness-110 active:brightness-100"
 				style="background-color:var(--color-accent)"
 			>
 				{data.prompt ? 'Update' : 'Set'}
@@ -121,7 +121,7 @@
 									<button
 										type="submit"
 										title="Clear mark"
-										class="flex h-7 w-7 items-center justify-center rounded-md border border-zinc-300 text-zinc-500 transition-colors hover:border-zinc-400 hover:text-zinc-700 dark:border-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-500 dark:hover:text-zinc-200"
+										class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border border-zinc-300 text-zinc-500 transition-colors hover:border-zinc-400 hover:text-zinc-700 dark:border-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-500 dark:hover:text-zinc-200"
 									><Minus size={13} /></button>
 								</form>
 							{/if}
@@ -132,7 +132,7 @@
 								<button
 									type="submit"
 									title="Mark as met"
-									class="flex h-7 w-7 items-center justify-center rounded-md border text-xs transition-colors"
+									class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border text-xs transition-colors hover:border-zinc-400 hover:text-zinc-700 dark:hover:border-zinc-500 dark:hover:text-zinc-200"
 									style={member.prompt_met === 1 ? 'border-color:#22c55e;background-color:color-mix(in srgb,#22c55e 10%,transparent);color:#22c55e' : ''}
 									class:border-zinc-300={member.prompt_met !== 1}
 									class:text-zinc-400={member.prompt_met !== 1}
@@ -146,7 +146,7 @@
 								<button
 									type="submit"
 									title="Mark as not met"
-									class="flex h-7 w-7 items-center justify-center rounded-md border text-xs transition-colors"
+									class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border text-xs transition-colors hover:border-zinc-400 hover:text-zinc-700 dark:hover:border-zinc-500 dark:hover:text-zinc-200"
 									style={member.prompt_met === 0 ? 'border-color:var(--color-accent);background-color:color-mix(in srgb,var(--color-accent) 10%,transparent);color:var(--color-accent)' : ''}
 									class:border-zinc-300={member.prompt_met !== 0}
 									class:text-zinc-400={member.prompt_met !== 0}
@@ -160,7 +160,7 @@
 						{@const urls = member.photos.map((p) => p.cdn_url)}
 						<div class="grid grid-cols-5 gap-1">
 							{#each member.photos as photo, i (photo.id)}
-								<button onclick={() => openLightbox(urls, i)} class="block overflow-hidden rounded-sm">
+								<button onclick={() => openLightbox(urls, i)} class="block cursor-pointer overflow-hidden rounded-sm">
 									<img
 										src={photo.cdn_url}
 										alt=""

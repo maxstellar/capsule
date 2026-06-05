@@ -125,7 +125,7 @@
 	<div class="mb-6 grid grid-cols-3 gap-2 sm:grid-cols-5">
 		{#each data.photos as photo, i (photo.id)}
 			<div class="group relative overflow-hidden rounded-md">
-				<button onclick={() => openLightbox(i)} class="block w-full">
+				<button onclick={() => openLightbox(i)} class="block w-full cursor-pointer">
 					<img
 						src={photo.cdn_url}
 						alt=""
@@ -149,7 +149,7 @@
 				<button
 					onclick={() => deletePhoto(photo.id)}
 					aria-label="Delete photo"
-					class="absolute top-1 right-1 flex h-6 w-6 items-center justify-center rounded-full bg-black/60 text-white"
+					class="absolute top-1 right-1 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white"
 				>
 					<X size={12} />
 				</button>
@@ -160,7 +160,7 @@
 			<button
 				onclick={() => fileInput?.click()}
 				disabled={uploading}
-				class="flex aspect-square items-center justify-center rounded-md border border-dashed border-zinc-500 bg-white text-zinc-400 transition-colors hover:border-zinc-900 hover:text-zinc-600 disabled:opacity-50 dark:border-zinc-500 dark:bg-surface-dark dark:text-zinc-500 dark:hover:border-zinc-300 dark:hover:text-zinc-200"
+				class="flex aspect-square cursor-pointer items-center justify-center rounded-md border border-dashed border-zinc-500 bg-white text-zinc-400 transition-colors hover:border-zinc-900 hover:text-zinc-600 disabled:opacity-50 dark:border-zinc-500 dark:bg-surface-dark dark:text-zinc-500 dark:hover:border-zinc-300 dark:hover:text-zinc-200"
 				aria-label="Add photo"
 			>
 				{#if uploading}
@@ -199,7 +199,7 @@
 	{#if remaining > 0 && !uploading}
 		<button
 			onclick={() => fileInput?.click()}
-			class="w-full rounded-md px-6 py-3.5 text-base font-bold text-white transition-colors"
+			class="w-full cursor-pointer rounded-md px-6 py-3.5 text-base font-bold text-white transition-all hover:brightness-110 active:brightness-100"
 			style="background-color:var(--color-accent)"
 		>
 			Upload photo{remaining !== 1 ? 's' : ''} ({remaining} remaining)

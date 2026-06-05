@@ -38,7 +38,7 @@
 		onclick={() => nav(prevDay)}
 		disabled={atCohortStart}
 		aria-label="Previous day"
-		class="flex h-7 w-7 items-center justify-center rounded-md bg-zinc-200 text-zinc-700 transition-colors disabled:opacity-30 [@media(hover:hover)]:hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:[@media(hover:hover)]:hover:bg-zinc-700"
+		class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-zinc-200 text-zinc-700 transition-colors disabled:opacity-30 [@media(hover:hover)]:hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:[@media(hover:hover)]:hover:bg-zinc-700"
 	>
 		<ChevronLeft size={14} />
 	</button>
@@ -46,7 +46,7 @@
 		onclick={() => nav(nextDay)}
 		disabled={atCohortEnd}
 		aria-label="Next day"
-		class="flex h-7 w-7 items-center justify-center rounded-md bg-zinc-200 text-zinc-700 transition-colors disabled:opacity-30 [@media(hover:hover)]:hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:[@media(hover:hover)]:hover:bg-zinc-700"
+		class="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-zinc-200 text-zinc-700 transition-colors disabled:opacity-30 [@media(hover:hover)]:hover:bg-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:[@media(hover:hover)]:hover:bg-zinc-700"
 	>
 		<ChevronRight size={14} />
 	</button>

@@ -75,7 +75,7 @@
 						{#each group.photos as photo, i (photo.id)}
 							<button
 								onclick={() => openLightbox(urls, i)}
-								class="block overflow-hidden rounded-md"
+								class="block cursor-pointer overflow-hidden rounded-md"
 							>
 								<img
 									src={photo.cdn_url}

@@ -169,7 +169,7 @@
 					{/if}
 					<button
 						onclick={next}
-						class="rounded-lg px-3.5 py-1.5 text-xs font-medium text-white transition-opacity hover:opacity-90"
+						class="cursor-pointer rounded-lg px-3.5 py-1.5 text-xs font-medium text-white transition-all hover:brightness-110 active:brightness-100"
 						style="background-color: var(--color-accent)"
 					>
 						{stepIndex < steps.length - 1 ? 'Next' : 'Done'}

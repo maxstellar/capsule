@@ -48,7 +48,7 @@
 			/>
 			<button
 				type="submit"
-				class="rounded-md px-3 py-1.5 text-sm font-medium text-white"
+				class="cursor-pointer rounded-md px-3 py-1.5 text-sm font-medium text-white transition-all hover:brightness-110 active:brightness-100"
 				style="background-color:var(--color-accent)"
 			>
 				Save
