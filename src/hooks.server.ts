@@ -5,6 +5,11 @@ import { db } from '$lib/server/db';
 import { users } from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 
+export const handleError = ({ error }: { error: unknown }) => {
+	console.error('[handleError]', error);
+	if (error instanceof Error && error.cause) console.error('[handleError cause]', error.cause);
+};
+
 export const handle: Handle = async ({ event, resolve }) => {
 	const session = await loadSession(event);
 
