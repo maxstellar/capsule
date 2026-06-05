@@ -20,7 +20,7 @@
 			<p class="text-base text-zinc-800 dark:text-zinc-200">{prompt}</p>
 		</div>
 		<div class="shrink-0 text-right">
-			<p class="text-xs text-zinc-400">{myCount}/5 photos</p>
+			<p class="text-sm text-zinc-400">{myCount}/5 photos</p>
 		</div>
 	</div>
 
