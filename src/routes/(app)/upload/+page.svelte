@@ -199,7 +199,7 @@
 	{#if remaining > 0 && !uploading}
 		<button
 			onclick={() => fileInput?.click()}
-			class="w-full rounded-md px-6 py-3.5 text-sm font-medium text-white transition-colors"
+			class="w-full rounded-md px-6 py-3.5 text-base font-bold text-white transition-colors"
 			style="background-color:var(--color-accent)"
 		>
 			Upload photo{remaining !== 1 ? 's' : ''} ({remaining} remaining)

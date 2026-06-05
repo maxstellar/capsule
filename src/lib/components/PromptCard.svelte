@@ -16,8 +16,8 @@
 >
 	<div class="flex items-start justify-between gap-4">
 		<div>
-			<p class="mb-2 text-xs font-medium uppercase tracking-wide text-zinc-400">Today's prompt</p>
-			<p class="text-sm text-zinc-800 dark:text-zinc-200">{prompt}</p>
+			<p class="mb-2 text-base font-medium uppercase tracking-wide text-zinc-400">Today's prompt</p>
+			<p class="text-lg text-zinc-800 dark:text-zinc-200">{prompt}</p>
 		</div>
 		<div class="shrink-0 text-right">
 			<p class="text-xs text-zinc-400">{myCount}/5 photos</p>
@@ -40,7 +40,7 @@
 	{#if showUploadCta}
 		<a
 			href="/upload"
-			class="mt-4 flex w-full items-center justify-center rounded-md px-6 py-3 text-sm font-medium text-white transition-colors"
+			class="mt-4 flex w-full items-center justify-center rounded-md px-6 py-3 text-base font-bold text-white transition-colors"
 			style={myCount >= 5 ? 'background-color:#71717a' : 'background-color:var(--color-accent)'}
 		>
 			{myCount >= 5 ? 'Edit your photos' : 'Upload photos'}
