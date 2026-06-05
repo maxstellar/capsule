@@ -4,6 +4,22 @@ import { isWhitelisted, isAdmin } from '$lib/server/auth/access';
 import { db } from '$lib/server/db';
 import { users } from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
+import { Cron } from 'croner';
+import { dev } from '$app/environment';
+import { env } from '$env/dynamic/private';
+
+if (!dev) {
+	new Cron('0 * * * *', async () => {
+		try {
+			await fetch(`${env.ORIGIN}/api/cron/reminders`, {
+				method: 'POST',
+				headers: { Authorization: `Bearer ${env.CRON_SECRET}` }
+			});
+		} catch (err) {
+			console.error('[Cron] reminders error', err);
+		}
+	});
+}
 
 export const handleError = ({ error }: { error: unknown }) => {
 	console.error('[handleError]', error);

@@ -19,6 +19,7 @@
 		"db:studio": "drizzle-kit studio"
 	},
 	"dependencies": {
+		"croner": "^10.0.1",
 		"image-size": "^2.0.2",
 		"lucide-svelte": "^0.511.0",
 		"web-push": "^3.6.7"

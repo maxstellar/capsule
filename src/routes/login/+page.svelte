@@ -188,10 +188,7 @@
 	}
 
 	.wordmark {
-		background: linear-gradient(160deg, #09090b 0%, #52525b 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
+		color: #09090b;
 	}
 
 	.camera-badge {
