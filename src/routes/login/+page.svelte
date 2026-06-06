@@ -104,7 +104,7 @@
 
 		<!-- Wordmark -->
 		<h1 class="wordmark mb-5 text-[72px] leading-[0.95] font-normal tracking-tight">
-			Caps<span class="ul-kern">u</span>le
+			Caps<span class="ul-kern">u</span><span class="le-kern">l</span>e
 		</h1>
 
 		<!-- Tagline -->
