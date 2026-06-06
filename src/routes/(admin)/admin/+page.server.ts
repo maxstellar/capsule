@@ -97,6 +97,32 @@ export const actions: Actions = {
 		return { ok: true };
 	},
 
+	deletePhoto: async (event) => {
+		requireAdmin(event);
+		const form = await event.request.formData();
+		const photoId = form.get('photo_id') as string;
+		if (!photoId) return fail(400, { error: 'photo_id required' });
+
+		const [row] = await db
+			.select({ id: photos.id, user_id: photos.user_id })
+			.from(photos)
+			.where(and(eq(photos.id, photoId), isNull(photos.deleted_at)))
+			.limit(1);
+
+		if (!row) return fail(404, { error: 'Photo not found' });
+
+		await db.update(photos).set({ deleted_at: new Date() }).where(eq(photos.id, photoId));
+
+		await db.insert(audit_log).values({
+			actor_user_id: event.locals.user!.id,
+			action: 'admin_delete_photo',
+			target_user_id: row.user_id,
+			meta: { photo_id: photoId }
+		});
+
+		return { ok: true };
+	},
+
 	markCompletion: async (event) => {
 		requireAdmin(event);
 		const form = await event.request.formData();

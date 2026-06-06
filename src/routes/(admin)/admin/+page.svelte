@@ -26,14 +26,7 @@
 	let isToday = $derived(data.day === data.today);
 	let isYesterday = $derived(data.day === data.yesterday);
 
-	let onboardingReset = $state(false);
-	function resetOnboarding() {
-		localStorage.removeItem('capsule_onboarded_v1');
-		onboardingReset = true;
-		setTimeout(() => (onboardingReset = false), 2000);
-	}
-
-	function navDay(offset: number) {
+function navDay(offset: number) {
 		const d = new Date(data.day + 'T12:00:00');
 		d.setDate(d.getDate() + offset);
 		const next = d.toISOString().slice(0, 10);
@@ -53,13 +46,7 @@
 <div class="page-container">
 	<div class="mb-6 flex items-center gap-3">
 		<h1 class="page-heading">Admin</h1>
-		<button
-			onclick={resetOnboarding}
-			class="cursor-pointer rounded-md border border-zinc-300 px-2 py-0.5 text-xs text-zinc-500 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:hover:bg-zinc-800"
-		>
-			{onboardingReset ? 'Reset!' : 'Reset onboarding'}
-		</button>
-		<span class="rounded-md border border-zinc-300 px-2 py-0.5 text-xs text-zinc-500 sm:text-sm dark:border-zinc-700">
+		<span class="rounded-md border border-zinc-300 px-2.5 py-1 text-sm text-zinc-500 sm:text-base dark:border-zinc-700">
 			{new Date(data.day + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}
 		</span>
 		<div class="ml-auto flex items-center gap-1">
@@ -173,14 +160,24 @@
 						{@const urls = member.photos.map((p) => p.cdn_url)}
 						<div class="grid grid-cols-5 gap-1">
 							{#each member.photos as photo, i (photo.id)}
-								<button onclick={() => openLightbox(urls, i)} class="block cursor-pointer overflow-hidden rounded-sm">
-									<img
-										src={photo.cdn_url}
-										alt=""
-										loading="lazy"
-										class="aspect-square w-full object-cover transition-opacity hover:opacity-90"
-									/>
-								</button>
+								<div class="group relative overflow-hidden rounded-sm">
+									<button onclick={() => openLightbox(urls, i)} class="block w-full cursor-pointer">
+										<img
+											src={photo.cdn_url}
+											alt=""
+											loading="lazy"
+											class="aspect-square w-full object-cover transition-opacity hover:opacity-90"
+										/>
+									</button>
+									<form method="POST" action="?/deletePhoto" use:enhance class="absolute top-1 right-1">
+										<input type="hidden" name="photo_id" value={photo.id} />
+										<button
+											type="submit"
+											aria-label="Delete photo"
+											class="flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white opacity-0 transition-opacity group-hover:opacity-100"
+										><X size={10} /></button>
+									</form>
+								</div>
 							{/each}
 						</div>
 					{:else}
