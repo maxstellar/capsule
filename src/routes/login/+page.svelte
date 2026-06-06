@@ -260,7 +260,7 @@
 			margin-bottom: clamp(20px, calc(12px + 1.25vw), 32px);
 		}
 		.tagline {
-			font-size: clamp(15px, calc(11.67px + 0.521vw), 20px);
+			font-size: clamp(18px, calc(14.67px + 0.521vw), 26px);
 			max-width: clamp(17rem, calc(12rem + 11.25vw), 28rem);
 			margin-bottom: clamp(40px, calc(24px + 2.5vw), 64px);
 		}
