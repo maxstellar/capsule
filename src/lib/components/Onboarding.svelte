@@ -8,7 +8,7 @@
 		if (active) cancel();
 	});
 
-	const STORAGE_KEY = 'capsule_onboarded_v1';
+	const STORAGE_KEY = 'shutter_onboarded_v1';
 
 	type Step = {
 		selector: string;
@@ -22,8 +22,8 @@
 	const steps: Step[] = [
 		{
 			selector: 'body',
-			title: 'Welcome to Capsule! 📸',
-			body: "Capsule is the daily photo journal & shared album for this year's Hack Club interns! Every day there's a new prompt that encourages you to take interesting pictures, try new things, meet new people, and make memories!",
+			title: 'Welcome to Shutter! 📸',
+			body: "Shutter is the daily photo journal & shared album for this year's Hack Club interns! Every day there's a new prompt that encourages you to take interesting pictures, try new things, meet new people, and make memories!",
 			noSpotlight: true
 		},
 		{
@@ -52,7 +52,7 @@
 		},
 		{
 			selector: 'body',
-			title: 'Capsule is better as an app!',
+			title: 'Shutter is better as an app!',
 			body: '',
 			noSpotlight: true,
 			pwa: true
@@ -208,7 +208,7 @@
 
 				<div class="mb-4">
 					<p class="mb-3 text-xs text-zinc-500 dark:text-zinc-400">
-						Add Capsule to your home screen for the full app experience.
+						Add Shutter to your home screen for the full app experience.
 					</p>
 					<div class="space-y-2 text-xs text-zinc-700 dark:text-zinc-300">
 						{#each instructions as [icon, label]}

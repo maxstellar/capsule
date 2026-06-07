@@ -29,7 +29,7 @@
 </script>
 
 <svelte:head>
-	<title>Album - Capsule</title>
+	<title>Album - Shutter</title>
 </svelte:head>
 
 {#if lightboxPhotos.length > 0}

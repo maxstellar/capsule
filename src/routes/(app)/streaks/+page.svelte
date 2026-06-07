@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>Streaks - Capsule</title>
+	<title>Streaks - Shutter</title>
 </svelte:head>
 
 <div class="page-container">

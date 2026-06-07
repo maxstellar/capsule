@@ -40,7 +40,7 @@ function navDay(offset: number) {
 {/if}
 
 <svelte:head>
-	<title>Admin - Capsule</title>
+	<title>Admin - Shutter</title>
 </svelte:head>
 
 <div class="page-container">

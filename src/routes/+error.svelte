@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>{$page.status} - Capsule</title>
+	<title>{$page.status} - Shutter</title>
 </svelte:head>
 
 <div class="flex min-h-[calc(100dvh-3rem)] items-center justify-center px-8 sm:px-4">

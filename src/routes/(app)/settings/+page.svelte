@@ -95,7 +95,7 @@
 </script>
 
 <svelte:head>
-	<title>Settings - Capsule</title>
+	<title>Settings - Shutter</title>
 </svelte:head>
 
 <div class="page-container">
@@ -199,7 +199,7 @@
 		<h2 class="mb-3 text-sm font-medium text-zinc-700 dark:text-zinc-300">Account</h2>
 		<div class="rounded-md border border-zinc-300 bg-zinc-50 px-4 py-3 dark:border-zinc-800 dark:bg-[#131315]">
 			<p class="mb-3 text-xs text-zinc-500">
-				Photos submitted to Capsule are stored on the Hack Club CDN and cannot be automatically
+				Photos submitted to Shutter are stored on the Hack Club CDN and cannot be automatically
 				deleted once uploaded. Contact an admin if you need a photo removed.
 			</p>
 			<form method="POST" action="/logout">

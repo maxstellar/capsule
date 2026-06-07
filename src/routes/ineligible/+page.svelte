@@ -1,5 +1,5 @@
 <svelte:head>
-	<title>Not invited - Capsule</title>
+	<title>Not invited - Shutter</title>
 </svelte:head>
 
 <div class="ineligible-page flex items-center justify-center px-4">

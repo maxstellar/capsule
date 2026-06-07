@@ -18,7 +18,7 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<title>Capsule</title>
+	<title>Shutter</title>
 </svelte:head>
 
 <div class="flex min-h-dvh flex-col">

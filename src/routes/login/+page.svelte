@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>Capsule</title>
+	<title>Shutter</title>
 </svelte:head>
 
 <div
@@ -62,7 +62,7 @@
 
 		<!-- Wordmark -->
 		<h1 class="wordmark mb-5 text-[72px] leading-[0.95] font-normal tracking-tight">
-			Caps<span class="ul-kern">u</span><span class="le-kern">l</span>e
+			<span style="letter-spacing: -0.06em">S</span>hutter
 		</h1>
 
 		<!-- Tagline -->
@@ -101,7 +101,6 @@
 			Need access? Ping <span class="font-medium text-zinc-400 dark:text-zinc-500">@maxstellar</span
 			> on Slack.
 		</p>
-
 	</div>
 </div>
 
@@ -139,10 +138,6 @@
 		color: #09090b;
 		font-family: var(--font-serif);
 		font-feature-settings: 'liga', 'dlig', 'kern';
-	}
-
-	.wordmark .ul-kern {
-		margin-right: 0.04em;
 	}
 
 	.login-page {

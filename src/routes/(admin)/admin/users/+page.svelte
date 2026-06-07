@@ -19,7 +19,7 @@
 </script>
 
 <svelte:head>
-	<title>Users - Admin - Capsule</title>
+	<title>Users - Admin - Shutter</title>
 </svelte:head>
 
 <div class="page-container">

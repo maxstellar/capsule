@@ -33,7 +33,7 @@
 		<a href="/" class="mr-auto flex items-center gap-3">
 			<img src={favicon} alt="" class="h-7 w-7 rounded-lg" />
 			<span class="text-2xl nav-wordmark" style="color: var(--color-accent)"
-				>Capsule</span
+				>Shutter</span
 			>
 		</a>
 
@@ -93,10 +93,10 @@
 	<header
 		class="sticky top-0 z-40 flex h-12 items-center justify-between border-b border-zinc-300 bg-white/90 px-4 backdrop-blur sm:hidden dark:border-zinc-800 dark:bg-zinc-950/90"
 	>
-		<a href="/" class="flex items-center gap-2.5" data-onboard="capsule-logo">
+		<a href="/" class="flex items-center gap-2.5" data-onboard="shutter-logo">
 			<img src={favicon} alt="" class="h-7 w-7 rounded-lg" />
 			<span class="text-xl nav-wordmark" style="color: var(--color-accent)"
-				>Capsule</span
+				>Shutter</span
 			>
 		</a>
 		<div class="flex items-center gap-2">
@@ -124,7 +124,7 @@
 		<a href="/" class="flex items-center gap-2.5">
 			<img src={favicon} alt="" class="h-7 w-7 rounded-lg" />
 			<span class="text-xl nav-wordmark" style="color: var(--color-accent)"
-				>Capsule</span
+				>Shutter</span
 			>
 		</a>
 		<ThemeToggle />

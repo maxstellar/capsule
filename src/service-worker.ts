@@ -5,9 +5,9 @@ import { build, files, version } from '$service-worker';
 
 declare const self: ServiceWorkerGlobalScope;
 
-const SHELL_CACHE = `capsule-v${version}`;
+const SHELL_CACHE = `shutter-v${version}`;
 // Image cache is intentionally not versioned — persists across app updates
-const IMAGE_CACHE = 'capsule-images';
+const IMAGE_CACHE = 'shutter-images';
 const IMAGE_CACHE_MAX = 500;
 const ASSETS = [...build, ...files];
 

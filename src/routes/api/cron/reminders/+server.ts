@@ -94,7 +94,7 @@ export const POST: RequestHandler = async (event) => {
 
 		// Slack DM
 		if (user.slack_notify && user.slack_id) {
-			const slackMsg = `*Don't forget to take/post photos for Capsule!*\n>${promptText}${env.ORIGIN ? `\n\n*<${env.ORIGIN}/upload|Go to Capsule>*` : ''}`;
+			const slackMsg = `*Don't forget to take/post photos for Shutter!*\n>${promptText}${env.ORIGIN ? `\n\n*<${env.ORIGIN}/upload|Go to Shutter>*` : ''}`;
 			const ok = await sendSlackDM(user.slack_id, slackMsg);
 			if (ok) notified = true;
 		}

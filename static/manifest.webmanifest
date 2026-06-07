@@ -1,7 +1,7 @@
 {
 	"id": "/",
-	"name": "Capsule",
-	"short_name": "Capsule",
+	"name": "Shutter",
+	"short_name": "Shutter",
 	"description": "A daily photo journal for your cohort",
 	"start_url": "/",
 	"display": "standalone",

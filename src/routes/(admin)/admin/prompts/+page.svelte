@@ -20,7 +20,7 @@
 </script>
 
 <svelte:head>
-	<title>Prompts - Admin - Capsule</title>
+	<title>Prompts - Admin - Shutter</title>
 </svelte:head>
 
 <div class="page-container">

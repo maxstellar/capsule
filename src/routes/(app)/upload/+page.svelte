@@ -94,7 +94,7 @@
 {/if}
 
 <svelte:head>
-	<title>Upload - Capsule</title>
+	<title>Upload - Shutter</title>
 </svelte:head>
 
 <div class="page-container">
