@@ -216,7 +216,7 @@ function navDay(offset: number) {
 				class="cursor-pointer text-sm text-zinc-500 underline underline-offset-2 hover:text-zinc-700 disabled:cursor-default disabled:opacity-50 dark:hover:text-zinc-300"
 			>{testReminderLoading ? 'Sending…' : 'Test reminder'}</button>
 			{#if testReminderResult !== null}
-				<span class="text-xs text-zinc-400">— {testReminderResult} push{testReminderResult !== 1 ? 'es' : ''} sent to your devices</span>
+				<span class="text-xs text-zinc-400">— reminded {testReminderResult} member{testReminderResult !== 1 ? 's' : ''}</span>
 			{/if}
 		</form>
 	</div>

@@ -14,6 +14,8 @@ import { and, eq, isNull, sql } from 'drizzle-orm';
 import { adminEditableDays, assertAdminDayEditable, currentETDay } from '$lib/server/time';
 import { isWhitelisted } from '$lib/server/auth/access';
 import { sendPushNotification } from '$lib/server/push';
+import { sendSlackDM } from '$lib/server/slack';
+import { env } from '$env/dynamic/private';
 
 export const load: PageServerLoad = async ({ locals, url }) => {
 	const { today, yesterday } = adminEditableDays();
@@ -180,9 +182,22 @@ export const actions: Actions = {
 
 	testReminder: async (event) => {
 		requireAdmin(event);
-		const userId = event.locals.user!.id;
 
 		const today = currentETDay();
+
+		const eligible = await db
+			.select({
+				id: users.id,
+				slack_id: users.slack_id,
+				slack_notify: users.slack_notify,
+				photoCount: sql<number>`count(${photos.id}) filter (where ${photos.day} = ${today} and ${photos.deleted_at} is null)::int`
+			})
+			.from(users)
+			.leftJoin(photos, eq(photos.user_id, users.id))
+			.groupBy(users.id);
+
+		const targets = eligible.filter((u) => isWhitelisted(u.slack_id) && u.photoCount < 3);
+
 		const [todayPrompt] = await db
 			.select()
 			.from(daily_prompts)
@@ -191,18 +206,26 @@ export const actions: Actions = {
 
 		const promptText = todayPrompt?.text ?? 'Time to post your daily photos!';
 
-		const subs = await db
-			.select()
-			.from(push_subscriptions)
-			.where(eq(push_subscriptions.user_id, userId));
-
 		let sent = 0;
-		for (const sub of subs) {
-			await sendPushNotification(sub.id, sub.endpoint, sub.p256dh, sub.auth, {
-				title: "Don't forget to post your photos!",
-				body: promptText,
-				url: '/upload'
-			});
+		for (const user of targets) {
+			const subs = await db
+				.select()
+				.from(push_subscriptions)
+				.where(eq(push_subscriptions.user_id, user.id));
+
+			for (const sub of subs) {
+				await sendPushNotification(sub.id, sub.endpoint, sub.p256dh, sub.auth, {
+					title: "Don't forget to post your photos!",
+					body: promptText,
+					url: '/upload'
+				});
+			}
+
+			if (user.slack_notify && user.slack_id) {
+				const slackMsg = `*Don't forget to take/post photos for Shutter!*\n>${promptText}${env.ORIGIN ? `\n\n*<${env.ORIGIN}/upload|Go to Shutter>*` : ''}`;
+				await sendSlackDM(user.slack_id, slackMsg);
+			}
+
 			sent++;
 		}
 
