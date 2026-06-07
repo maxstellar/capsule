@@ -1,42 +1,60 @@
-# sv
+# Shutter
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A daily photo journal for Hack Club intern cohorts (could potentially be repurposed for other cohorts). Each day has a prompt for at least one photo; members upload up to 5 photos per day and build streaks. Admins can set prompts and review submissions.
 
-## Creating a project
+Built with SvelteKit, PostgreSQL (Drizzle ORM), and Hack Club OAuth.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Dev Setup
 
-```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
+**1. Install dependencies**
 
 ```sh
-# recreate this project
-bun x sv@0.15.4 create --template minimal --types ts --add prettier tailwindcss="plugins:forms" drizzle="database:postgresql+postgresql:postgres.js+docker:yes" --install bun .
+npm install
 ```
 
-## Developing
+**2. Configure environment variables**
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Copy `.env.example` to `.env` and fill in the values:
+
+| Variable                                                   | Description                                      |
+| ---------------------------------------------------------- | ------------------------------------------------ |
+| `DATABASE_URL`                                             | PostgreSQL connection string                     |
+| `HACKCLUB_AUTH_CLIENT_ID`                                  | OAuth app client ID                              |
+| `HACKCLUB_AUTH_CLIENT_SECRET`                              | OAuth app client secret                          |
+| `HACKCLUB_AUTH_REDIRECT_URI`                               | OAuth redirect URI                               |
+| `WHITELIST_IDS`                                            | Comma-separated Slack user IDs with access       |
+| `ADMIN_IDS`                                                | Comma-separated Slack user IDs with admin access |
+| `COHORT_START` / `COHORT_END`                              | Date range for the cohort (YYYY-MM-DD)           |
+| `HACKCLUB_CDN_TOKEN`                                       | Token for Hack Club CDN image hosting            |
+| `SLACK_BOT_TOKEN`                                          | For Slack notifications (optional)               |
+| `VAPID_PUBLIC_KEY` / `VAPID_PRIVATE_KEY` / `VAPID_SUBJECT` | For web push notifications (optional)            |
+| `CRON_SECRET`                                              | Secret for cron endpoints                        |
+
+Generate VAPID keys with `npx web-push generate-vapid-keys`.
+
+**3. Start the database**
+
+```sh
+npm run db:start   # starts a local Postgres container via Docker Compose
+npm run db:migrate # applies migrations
+```
+
+**4. Run the dev server**
 
 ```sh
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
+## Other scripts
 
 ```sh
-npm run build
+npm run build       # production build
+npm run preview     # preview production build
+npm run check       # type checking
+npm run db:studio   # Drizzle Studio (visual DB browser)
+npm run db:generate # generate migrations from schema changes
 ```
 
-You can preview the production build with `npm run preview`.
+# Contributing
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+PRs welcome!
