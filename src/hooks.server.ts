@@ -39,7 +39,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		if (user) {
 			event.locals.user = user;
 			event.locals.session = session;
-			event.locals.isWhitelisted = isWhitelisted(user.slack_id);
+			event.locals.isWhitelisted = await isWhitelisted(user.slack_id);
 			event.locals.isAdmin = isAdmin(user.slack_id);
 		} else {
 			event.locals.user = null;

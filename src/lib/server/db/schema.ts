@@ -139,6 +139,12 @@ export const audit_log = pgTable('audit_log', {
 	created_at: tsz('created_at').notNull().defaultNow()
 });
 
+export const whitelist = pgTable('whitelist', {
+	slack_id: text('slack_id').primaryKey(),
+	invited_by_user_id: uuid('invited_by_user_id').references(() => users.id, { onDelete: 'set null' }),
+	invited_at: tsz('invited_at').notNull().defaultNow()
+});
+
 // Relations
 export const usersRelations = relations(users, ({ many }) => ({
 	sessions: many(sessions),

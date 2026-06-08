@@ -192,5 +192,6 @@ function navDay(offset: number) {
 	<div class="mt-8 flex gap-4 border-t border-zinc-300 pt-6 dark:border-zinc-800">
 		<a href="/admin/prompts" class="text-sm text-zinc-500 underline underline-offset-2 hover:text-zinc-700 dark:hover:text-zinc-300">Manage prompts</a>
 		<a href="/admin/users" class="text-sm text-zinc-500 underline underline-offset-2 hover:text-zinc-700 dark:hover:text-zinc-300">All users</a>
+		<a href="/admin/invite" class="text-sm text-zinc-500 underline underline-offset-2 hover:text-zinc-700 dark:hover:text-zinc-300">Invite</a>
 	</div>
 </div>

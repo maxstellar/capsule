@@ -4,13 +4,16 @@ import { users, photos } from '$lib/server/db/schema';
 import { and, eq, isNull, sql } from 'drizzle-orm';
 import { currentETDay } from '$lib/server/time';
 import { computeStreak } from '$lib/server/streak';
-import { isWhitelisted } from '$lib/server/auth/access';
+import { getWhitelistedSlackIds } from '$lib/server/auth/access';
 
 export const load: PageServerLoad = async () => {
 	const today = currentETDay();
 
-	const allUsers = await db.select().from(users).orderBy(users.name);
-	const whitelisted = allUsers.filter((u) => isWhitelisted(u.slack_id));
+	const [allUsers, whitelistedIds] = await Promise.all([
+		db.select().from(users).orderBy(users.name),
+		getWhitelistedSlackIds()
+	]);
+	const whitelisted = allUsers.filter((u) => u.slack_id && whitelistedIds.has(u.slack_id));
 
 	const todayCounts = await db
 		.select({ user_id: photos.user_id, count: sql<number>`count(*)::int` })

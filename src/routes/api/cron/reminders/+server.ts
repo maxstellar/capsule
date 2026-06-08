@@ -14,7 +14,7 @@ import { and, eq, isNull, sql, lt } from 'drizzle-orm';
 import { currentETDay, currentETHour } from '$lib/server/time';
 import { sendPushNotification } from '$lib/server/push';
 import { sendSlackDM } from '$lib/server/slack';
-import { isWhitelisted } from '$lib/server/auth/access';
+import { getWhitelistedSlackIds } from '$lib/server/auth/access';
 
 export const POST: RequestHandler = async (event) => {
 	// Constant-time bearer check
@@ -31,6 +31,8 @@ export const POST: RequestHandler = async (event) => {
 	const today = currentETDay();
 	const hour = currentETHour();
 
+	const whitelistedIds = await getWhitelistedSlackIds();
+
 	// Get all users with this reminder hour who haven't yet had 3 photos today
 	const eligible = await db
 		.select({
@@ -45,7 +47,9 @@ export const POST: RequestHandler = async (event) => {
 		.where(eq(users.reminder_hour_local, hour))
 		.groupBy(users.id);
 
-	const whitelistedEligible = eligible.filter((u) => isWhitelisted(u.slack_id) && u.photoCount < 3);
+	const whitelistedEligible = eligible.filter(
+		(u) => u.slack_id && whitelistedIds.has(u.slack_id) && u.photoCount < 3
+	);
 
 	if (whitelistedEligible.length === 0) return json({ sent: 0, hour, day: today });
 

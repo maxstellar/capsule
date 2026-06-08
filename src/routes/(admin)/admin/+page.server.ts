@@ -11,7 +11,7 @@ import {
 } from '$lib/server/db/schema';
 import { and, eq, isNull, sql } from 'drizzle-orm';
 import { adminEditableDays, assertAdminDayEditable, currentETDay } from '$lib/server/time';
-import { isWhitelisted } from '$lib/server/auth/access';
+import { getWhitelistedSlackIds } from '$lib/server/auth/access';
 
 export const load: PageServerLoad = async ({ locals, url }) => {
 	const { today, yesterday } = adminEditableDays();
@@ -20,8 +20,11 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 	const raw = url.searchParams.get('day') ?? today;
 	const day = raw >= yesterday && raw <= today ? raw : today;
 
-	const allUsers = await db.select().from(users);
-	const whitelisted = allUsers.filter((u) => isWhitelisted(u.slack_id));
+	const [allUsers, whitelistedIds] = await Promise.all([
+		db.select().from(users),
+		getWhitelistedSlackIds()
+	]);
+	const whitelisted = allUsers.filter((u) => u.slack_id && whitelistedIds.has(u.slack_id));
 
 	const [photoCounts, completions, dayPrompt] = await Promise.all([
 		db
