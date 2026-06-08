@@ -61,19 +61,7 @@ export const POST: RequestHandler = async (event) => {
 	let sent = 0;
 
 	for (const user of whitelistedEligible) {
-		// Dedupe: skip if already sent this hour (handles DST fall-back double-hour)
-		const [alreadySent] = await db
-			.select()
-			.from(reminder_sends)
-			.where(
-				and(
-					eq(reminder_sends.user_id, user.id),
-					eq(reminder_sends.day, today),
-					eq(reminder_sends.hour_local, hour)
-				)
-			)
-			.limit(1);
-		if (alreadySent) continue;
+		// Dedupe temporarily disabled for testing
 
 		let notified = false;
 

@@ -9,9 +9,7 @@ import { dev } from '$app/environment';
 import { env } from '$env/dynamic/private';
 
 if (!dev) {
-	console.log('[Cron] registering reminders cron');
 	new Cron('* * * * *', async () => {
-		console.log('[Cron] reminders firing');
 		try {
 			const res = await fetch(`http://localhost:${process.env.PORT ?? 3000}/api/cron/reminders`, {
 				method: 'POST',
