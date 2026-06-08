@@ -3,6 +3,7 @@ import { json, error } from '@sveltejs/kit';
 import { requireWhitelisted } from '$lib/server/auth/access';
 import { sniffMime, getDimensions } from '$lib/server/images';
 import { getUploader } from '$lib/server/cdn';
+import { uploadHackClubPhoto, deleteHackClubPhoto } from '$lib/server/hackclub-photos';
 import { assertUserDayEditable, currentETDay } from '$lib/server/time';
 import { db } from '$lib/server/db';
 import { photos } from '$lib/server/db/schema';
@@ -27,6 +28,7 @@ export const POST: RequestHandler = async (event) => {
 	assertUserDayEditable(today);
 
 	const userId = event.locals.user!.id;
+	const hackClubUserId = event.locals.user!.hackclub_id;
 	const uploader = getUploader();
 
 	// Enforce 5-per-day with a serializable transaction
@@ -64,6 +66,22 @@ export const POST: RequestHandler = async (event) => {
 		return inserted;
 	});
 
+	uploadHackClubPhoto({
+		buffer,
+		filename: file.name || 'photo.jpg',
+		mimeType,
+		userId: hackClubUserId,
+		photoId: newPhoto.id
+	})
+		.then(async (mediaId) => {
+			if (!mediaId) return;
+			await db
+				.update(photos)
+				.set({ hackclub_photos_media_id: mediaId })
+				.where(eq(photos.id, newPhoto.id));
+		})
+		.catch((err) => console.error('Hack Club Photos upload failed:', err));
+
 	return json({ id: newPhoto.id, cdn_url: newPhoto.cdn_url, width: newPhoto.width, height: newPhoto.height });
 };
 
@@ -91,6 +109,12 @@ export const DELETE: RequestHandler = async (event) => {
 		.update(photos)
 		.set({ deleted_at: new Date() })
 		.where(eq(photos.id, photoId));
+
+	if (row.hackclub_photos_media_id) {
+		deleteHackClubPhoto(row.hackclub_photos_media_id).catch((err) =>
+			console.error('Hack Club Photos delete failed:', err)
+		);
+	}
 
 	return json({ ok: true });
 };

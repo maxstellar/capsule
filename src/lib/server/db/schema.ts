@@ -68,6 +68,7 @@ export const photos = pgTable(
 		size_bytes: integer('size_bytes').notNull(),
 		width: integer('width'),
 		height: integer('height'),
+		hackclub_photos_media_id: text('hackclub_photos_media_id'),
 		deleted_at: tsz('deleted_at')
 	},
 	(t) => [
