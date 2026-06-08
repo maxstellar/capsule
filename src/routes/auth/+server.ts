@@ -66,7 +66,7 @@ export const GET: RequestHandler = async (event) => {
 	const ua = request.headers.get('user-agent');
 	await createSession(user.id, ua, event);
 
-	if (!isWhitelisted(slack_id)) {
+	if (!(await isWhitelisted(slack_id))) {
 		throw redirect(303, '/ineligible');
 	}
 
