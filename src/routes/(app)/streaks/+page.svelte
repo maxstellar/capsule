@@ -17,7 +17,7 @@
 		<div
 			class="mb-6 rounded-md border border-zinc-300 bg-zinc-50 px-4 py-3 dark:border-zinc-800 dark:bg-[#131315]"
 		>
-			<p class="mb-1 text-xs text-zinc-500">Your streak</p>
+			<p class="mb-1 text-sm text-zinc-500">Your streak</p>
 			<div class="flex items-baseline gap-2">
 				<span class="streak-number text-zinc-900 dark:text-zinc-100">{data.myStreak.current}</span>
 				<span class="text-xl text-zinc-500">day{data.myStreak.current !== 1 ? 's' : ''}</span>
