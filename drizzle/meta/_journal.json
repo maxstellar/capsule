@@ -29,6 +29,13 @@
       "when": 1749340800000,
       "tag": "0003_add_whitelist_table",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1780900000000,
+      "tag": "0004_add_photo_likes",
+      "breakpoints": true
     }
   ]
 }
