@@ -10,7 +10,7 @@
 </svelte:head>
 
 <div
-	class="login-page relative flex items-center justify-center overflow-hidden bg-white px-6 py-16 dark:bg-surface-dark"
+	class="login-page relative flex items-center justify-center overflow-hidden bg-white px-6 py-8 dark:bg-surface-dark"
 >
 	<!-- Dot grid -->
 	<div class="dot-grid pointer-events-none absolute inset-0"></div>
@@ -155,19 +155,19 @@
 			max-width: clamp(20rem, calc(11rem + 22.5vw), 32rem);
 		}
 		.camera-badge {
-			width: clamp(80px, calc(40px + 6.25vw), 140px);
-			height: clamp(80px, calc(40px + 6.25vw), 140px);
-			border-radius: clamp(22px, calc(12.33px + 1.5vw), 36px);
-			margin-bottom: clamp(32px, calc(21.33px + 1.667vw), 48px);
+			width: clamp(80px, calc(40px + 5vw), 112px);
+			height: clamp(80px, calc(40px + 5vw), 112px);
+			border-radius: clamp(22px, calc(12.33px + 1.5vw), 30px);
+			margin-bottom: clamp(24px, calc(16px + 1.25vw), 36px);
 		}
 		.wordmark {
-			font-size: clamp(88px, calc(40px + 7.5vw), 160px);
-			margin-bottom: clamp(20px, calc(12px + 1.25vw), 32px);
+			font-size: clamp(80px, calc(48px + 5vw), 120px);
+			margin-bottom: clamp(16px, calc(10px + 1vw), 24px);
 		}
 		.tagline {
-			font-size: clamp(18px, calc(14.67px + 0.521vw), 26px);
-			max-width: clamp(17rem, calc(12rem + 11.25vw), 28rem);
-			margin-bottom: clamp(40px, calc(24px + 2.5vw), 64px);
+			font-size: clamp(16px, calc(13px + 0.417vw), 20px);
+			max-width: clamp(17rem, calc(12rem + 11.25vw), 26rem);
+			margin-bottom: clamp(32px, calc(20px + 1.875vw), 48px);
 		}
 		.sign-in-btn {
 			padding-top: clamp(14px, calc(8.67px + 0.833vw), 22px);

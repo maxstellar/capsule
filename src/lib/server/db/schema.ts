@@ -129,6 +129,19 @@ export const reminder_sends = pgTable(
 	(t) => [primaryKey({ columns: [t.user_id, t.day, t.hour_local] })]
 );
 
+export const photo_likes = pgTable(
+	'photo_likes',
+	{
+		photo_id: uuid('photo_id').notNull().references(() => photos.id, { onDelete: 'cascade' }),
+		user_id: uuid('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+		created_at: tsz('created_at').notNull().defaultNow()
+	},
+	(t) => [
+		primaryKey({ columns: [t.photo_id, t.user_id] }),
+		index('photo_likes_photo_idx').on(t.photo_id)
+	]
+);
+
 export const audit_log = pgTable('audit_log', {
 	id: bigserial('id', { mode: 'number' }).primaryKey(),
 	actor_user_id: uuid('actor_user_id').references(() => users.id, { onDelete: 'set null' }),
@@ -157,8 +170,14 @@ export const sessionsRelations = relations(sessions, ({ one }) => ({
 	user: one(users, { fields: [sessions.user_id], references: [users.id] })
 }));
 
-export const photosRelations = relations(photos, ({ one }) => ({
-	user: one(users, { fields: [photos.user_id], references: [users.id] })
+export const photosRelations = relations(photos, ({ one, many }) => ({
+	user: one(users, { fields: [photos.user_id], references: [users.id] }),
+	likes: many(photo_likes)
+}));
+
+export const photoLikesRelations = relations(photo_likes, ({ one }) => ({
+	photo: one(photos, { fields: [photo_likes.photo_id], references: [photos.id] }),
+	user: one(users, { fields: [photo_likes.user_id], references: [users.id] })
 }));
 
 export const promptCompletionsRelations = relations(prompt_completions, ({ one }) => ({
