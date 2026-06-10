@@ -1,9 +1,14 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import { enhance } from '$app/forms';
 	import UserAvatar from '$lib/components/UserAvatar.svelte';
 	import StreakBadge from '$lib/components/StreakBadge.svelte';
 
 	let { data }: { data: PageData } = $props();
+
+	let reminderSending = $state(false);
+	let reminderResult = $state<{ sent: number; failed: number } | null>(null);
+	let reminderError = $state<string | null>(null);
 
 	function formatHour(h: number | null): string {
 		if (h == null) return 'No reminder';
@@ -24,6 +29,65 @@
 		<h1 class="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Users</h1>
 		<span class="text-sm text-zinc-400">{data.members.length} members</span>
 	</div>
+
+	{#if data.reminderEligibleCount > 0}
+		<div
+			class="mb-4 flex items-center justify-between gap-3 rounded-md border border-zinc-300 bg-zinc-50 px-4 py-3 dark:border-zinc-800 dark:bg-[#131315]"
+		>
+			<div>
+				<p class="text-sm text-zinc-800 dark:text-zinc-200">PWA install + push reminder</p>
+				<p class="text-xs text-zinc-500">
+					DM the {data.reminderEligibleCount}
+					{data.reminderEligibleCount === 1 ? 'user' : 'users'} who haven't enabled push notifications.
+				</p>
+			</div>
+			<form
+				method="POST"
+				action="?/sendPwaReminders"
+				use:enhance={({ cancel }) => {
+					if (!confirm(`Send Slack DM to ${data.reminderEligibleCount} users?`)) {
+						cancel();
+						return;
+					}
+					reminderSending = true;
+					reminderResult = null;
+					reminderError = null;
+					return async ({ result, update }) => {
+						reminderSending = false;
+						if (result.type === 'success' && result.data) {
+							reminderResult = {
+								sent: result.data.sent as number,
+								failed: result.data.failed as number
+							};
+						} else if (result.type === 'failure' && result.data) {
+							reminderError = (result.data.error as string) ?? 'Failed to send';
+						}
+						await update();
+					};
+				}}
+			>
+				<button
+					type="submit"
+					disabled={reminderSending}
+					class="cursor-pointer rounded-md px-3 py-1.5 text-sm font-medium text-white transition-all hover:brightness-110 active:brightness-100 disabled:cursor-not-allowed disabled:opacity-60"
+					style="background-color: var(--color-accent)"
+				>
+					{reminderSending ? 'Sending…' : 'Send DMs'}
+				</button>
+			</form>
+		</div>
+		{#if reminderResult}
+			<p class="mb-4 text-xs text-zinc-500">
+				Sent {reminderResult.sent}
+				{reminderResult.sent === 1 ? 'DM' : 'DMs'}{reminderResult.failed > 0
+					? `, ${reminderResult.failed} failed`
+					: ''}.
+			</p>
+		{/if}
+		{#if reminderError}
+			<p class="mb-4 text-xs text-red-500">{reminderError}</p>
+		{/if}
+	{/if}
 
 	<div class="overflow-hidden rounded-md border border-zinc-300 bg-zinc-50 dark:border-zinc-800 dark:bg-[#131315]">
 		<table class="w-full text-sm">
