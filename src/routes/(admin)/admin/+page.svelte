@@ -11,11 +11,11 @@
 	let promptText = $state('');
 	$effect(() => { promptText = data.prompt?.text ?? ''; });
 
-	let lightboxPhotos = $state<string[]>([]);
+	let lightboxPhotos = $state<{ url: string }[]>([]);
 	let lightboxIndex = $state(0);
 
-	function openLightbox(photos: string[], index: number) {
-		lightboxPhotos = photos;
+	function openLightbox(urls: string[], index: number) {
+		lightboxPhotos = urls.map((url) => ({ url }));
 		lightboxIndex = index;
 	}
 

@@ -5,11 +5,11 @@
 	import PromptCard from '$lib/components/PromptCard.svelte';
 	import Lightbox from '$lib/components/Lightbox.svelte';
 
-	let lightboxPhotos = $state<string[]>([]);
+	let lightboxPhotos = $state<{ url: string }[]>([]);
 	let lightboxIndex = $state(0);
 
 	function openLightbox(index: number) {
-		lightboxPhotos = data.photos.map((p) => p.cdn_url);
+		lightboxPhotos = data.photos.map((p) => ({ url: p.cdn_url }));
 		lightboxIndex = index;
 	}
 
